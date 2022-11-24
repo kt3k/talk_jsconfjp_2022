@@ -1,0 +1,83 @@
+dest: docs
+port: 30000
+title: About `npm:` support of Deno
+description: In this session, the speaker talks about npm support of Deno.
+ogImage: "https://kt3k.github.io/talk_jsconfjp_2022/assets/og-image.png"
+ogImageWidth: 883
+ogImageHeight: 509
+twitter: kt3k
+favicon: ./assets/logo.svg
+remarkConfig:
+  slideNumberFormat: 'Deno@JSConfJP - %current% / %total%'
+css: |
+  body {
+    font-family: 'Avenir Next', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
+    font-weight: bold;
+  }
+  h1, h2, h3 {
+    font-weight: bold;
+  }
+  .remark-container {
+    background-color: #eaf9ff;
+  }
+  .remark-code,
+  .remark-inline-code {
+    font-family: 'Menlo', 'Monaco', 'Courier new', monospace;
+    background-color: #eeeeee;
+    padding: 4px 16px;
+    border-radius: 8px;
+  }
+
+  code.remark-code {
+    display: block;
+    padding: 0.7em;
+    border-radius: 5px;
+    background-color: #272822;
+    color: #f3f3f3;
+    font-size: 23px;
+  }
+
+  .remark-slide-content {
+    color: #24292e;
+    font-size: 32px;
+    padding: 15px 60px;
+  }
+
+  .remark-slide-content.inverse {
+    color: #f3f3f3;
+    background-color: #272822;
+  }
+
+  .remark-slide-number a {
+    color: #24292e;
+    text-decoration: none;
+  }
+
+  .inverse .remark-slide-number a {
+    color: #f3f3f3;
+  }
+
+  .inverse a:visited, .inverse a {
+    color: #3393f3;
+    text-decoration: none;
+  }
+
+  .remark-slide-content a:visited, .remark-slice-content a {
+    color: #3393f3;
+    text-decoration: none;
+  }
+
+  @page {
+    size: 908px 681px;
+    margin: 0;
+  }
+
+  @media print {
+    .remark-slide-scaler {
+      width: 100% !important;
+      height: 100% !important;
+      transform: scale(1) !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+  }
