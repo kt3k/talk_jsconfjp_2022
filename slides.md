@@ -47,18 +47,20 @@ Deno の特徴1
   - CommonJS なし、ES Module のみ
 - URL 指定でモジュールをインポートする
   - ブラウザと同じ挙動
-  - npm install / node_modules 的なものは無い
+  - npm install 的なものは無い
+    - 実行時に依存を自動的に DL
 
 ---
 Deno の特徴2
 
-# DX の改善
+# DX (開発体験) の改善
 
 - 豊富な ビルトインツール
-  - `deno lint`, `deno fmt`, etc
+  - `deno lint`, `deno fmt`, `deno test` etc
 - TypeScript もビルトイン
   - 設定 / インストール不要
 - シングルバイナリ
+  - デプロイが簡単
 
 ---
 Deno の特徴3
@@ -84,7 +86,7 @@ class: bg-light-yellow
 
 日野澤歓也 / twitter @kt3k
 
-Web エンジニア歴 10+年
+Web エンジニア歴 13年
 
 - <small>プロジェクト初期 (2018) からOSSとしての Deno 開発に参加</small>
 - <small>2020年に Deno が会社化、その数カ月後に会社に誘われる</small>
@@ -257,12 +259,14 @@ class: no-number
 
 ```js
 import fs from "fs"; // <= Node の fs が import される!
+
+import express from "express";
+// ^-- node_modules 以下の express が import される!
 ```
 
 --
 
-<br />
-<p class="text-center"><small>デザインに対する懸念が強かった</small></p>
+<p class="text-center">さすがに、デザインに対する懸念が強かった</p>
 
 ---
 class: middle center inverse
@@ -317,6 +321,7 @@ npm 互換性 反対派
 ---
 npm 互換性 推進派
 
+- Deno のユーザー数が思ったより増えていない
 - npm が使えない事は、そもそも Deno を使い始める事のブロッカーになっているという意見が多数
   - Deno を触ってない Node ユーザの大半の意見
 - Deno のモジュール数がそこまで増えない
@@ -330,6 +335,16 @@ npm 互換性の葛藤
 - コミュニティ内はどちらかというと反対優勢
 - npm 互換性はコミュニティ外に向けてアピールするための機能
 - この機能を本当に入れるべきなのかという混乱があった
+
+---
+class: center middle inverse
+
+そんな中、判断の鍵となったブログポスト
+
+---
+class: center middle
+
+<img width="800" src="assets/chicken-egg.png" />
 
 ---
 class: bg-light-yellow
@@ -358,15 +373,29 @@ Joel Spolsky: プラットフォームの鶏卵問題
 - Windows 3.x - DOS との互換性を取って成功
 - Windows 95 - Windows 3.x との互換性を取って成功
 
---
+---
+class: bg-light-yellow
 
-Deno コアチームは npm 互換性がこの問題への解であると考えた
+Deno コアチームの考え方
+
+- Deno の少ないユーザー数、少ないモジュール数の現状は、プラットフォームの鶏卵問題にまさに陥っている
+
+--
+- npm 互換性を実装することが、この問題への解になる。
 
 ---
 npm 互換性 実装への判断
 
-- 反対派を押し切る形で推進
+- 反対派を押し切る形で `npm:` 機能を推進
 - BDFL (優しい終身の独裁者) が居たので出来た判断
+
+
+
+---
+class: middle center
+
+<img src="assets/deno_logo_3.svg" width="200" />
+
 
 ---
 class: middle center
@@ -377,7 +406,7 @@ npm 互換性で変わらない事
 npm 互換性で変わらない事1
 
 - Deno が URL ベースモジュールシステムであること
-- `npm:express` は URL として valid
+- `npm:express` はカスタムスキームの URL
   - `new URL("npm:express")` でパース出来る
   - protocol `npm:` path `express` の URL
 
@@ -393,7 +422,7 @@ npm 互換性で変わらない事2
 - その次に推奨されるのは<br /> `https://deno.land/x/*` (公式レジストリ)
 
 --
-- 上で賄いきれない場合に使ってほしいのが<br />`npm:*`
+- 上で<span class="red">賄いきれない</span>場合に使ってほしいのが<br />`npm:*`
 
 ---
 よくある誤解
@@ -412,6 +441,8 @@ class: middle center
 
 <img src="assets/deno_logo_3.svg" width="200" />
 
+以上
+
 ---
 まとめ
 
@@ -422,10 +453,10 @@ class: middle center
 - Deno が Node になってしまったのではなく、あくまで Deno の世界観の中で npm の"機能"を使うことが出来るもの
 -->
 
-- `npm:` という特殊な URL を介して Deno の中で npm モジュールが使える
-- Deno の良い点を出来るだけ損なわないように、慎重にデザインされている
-- 多くのモジュールで動作確認が取れている (express, vite, etc)
-- ただしまだまだ動かないモジュールも多い 😅
+- `npm:` という特殊な URL を介して Deno の中で npm モジュールが使えるようになった
+- `npm:` は Deno の良い点を損なわないように、慎重にデザインされている
+- `npm:` は多くのモジュールで動作確認が取れている (express, vite, prisma, etc)
+  - ただしまだまだ動かないモジュールも多い 😅
   - エラー報告歓迎 🫶
 
 ---
