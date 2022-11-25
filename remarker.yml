@@ -43,6 +43,18 @@ css: |
     padding: 15px 60px;
   }
 
+  .remark-slide-content.small {
+    font-size: 24px;
+  }
+
+  .remark-slide-content.bg-sky {
+    background-color: #9ae5ff;
+  }
+
+  .remark-slide-content.bg-light-yellow {
+    background-color: #ffffed;
+  }
+
   .remark-slide-content.inverse {
     color: #f3f3f3;
     background-color: #272822;
@@ -80,4 +92,8 @@ css: |
       top: 0 !important;
       left: 0 !important;
     }
+  }
+
+  .text-center {
+    text-align: center;
   }
