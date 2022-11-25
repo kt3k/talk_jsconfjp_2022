@@ -37,6 +37,10 @@ css: |
     font-size: 23px;
   }
 
+  .code-18 code.remark-code {
+    font-size: 18px;
+  }
+
   .remark-slide-content {
     color: #24292e;
     font-size: 32px;
@@ -63,6 +67,10 @@ css: |
   .remark-slide-number a {
     color: #24292e;
     text-decoration: none;
+  }
+
+  .no-number .remark-slide-number {
+    display: none;
   }
 
   .inverse .remark-slide-number a {
