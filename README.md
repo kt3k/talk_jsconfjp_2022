@@ -1,2 +1,3 @@
-- Slides https://kt3k.github.io/talk_techfeed_2022
-- Event page https://techfeed.io/events/techfeed-experts-night-8
+- Slides https://kt3k.github.io/talk_jsconfjp_2022
+- Event page https://jsconf.jp/2022/
+- Talk page https://jsconf.jp/2022/talk/current-state-of-npm-support-in-deno
