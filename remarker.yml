@@ -3,8 +3,8 @@ port: 30000
 title: About `npm:` support of Deno
 description: Deno の復習をしつつ、Deno に新しく入った `npm:` 機能の概要や、開発経緯の話をします。
 ogImage: "https://kt3k.github.io/talk_jsconfjp_2022/assets/og-image.png"
-ogImageWidth: 1824
-ogImageHeight: 1284
+ogImageWidth: 1024
+ogImageHeight: 752
 twitter: kt3k
 favicon: ./assets/logo.svg
 remarkConfig:
