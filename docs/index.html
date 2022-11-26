@@ -154,16 +154,33 @@ class: bg-light-yellow
 
 アジェンダ
 
-- Deno の復習
+- Deno のおさらい<!--5-->
 - npm 互換性の話
-  - 使い方 / デモ
-  - 実装までの経緯
-  - npm 互換性で変わらないこと
+  - 使い方 / デモ<!--10-->
+  - 実装までの経緯<!--10-->
+  - npm 互換性で変わらないこと<!--5-->
+
+---
+class: bg-light-yellow
+
+<img src="./assets/hinosawa.jpg" align="right" width="150" />
+
+自己紹介
+
+日野澤歓也 / twitter @kt3k
+
+Web エンジニア歴 13年
+
+- <small>プロジェクト初期 (2018) からOSSとしての Deno 開発に参加</small>
+- <small>2020年に Deno が会社化、その数カ月後に会社に誘われる</small>
+- <small>2021年から Deno のフルタイムコミッターに</small>
+
+<small>このあたりの経緯は Findy Engineer Lab の[Deno開発企業で私が働く理由](https://engineer-lab.findy-code.io/deno-kt3k)という記事にまとめられています</small>
 
 ---
 class: middle center inverse
 
-Deno の復習
+Deno のおさらい
 
 ---
 class: middle center inverse
@@ -190,8 +207,8 @@ Deno の特徴1
   - CommonJS なし、ES Module のみ
 - URL 指定でモジュールをインポートする
   - ブラウザと同じ挙動
+  - 実行時に依存を自動的に DL
   - npm install 的なものは無い
-    - 実行時に依存を自動的に DL
 
 ---
 Deno の特徴2
@@ -210,32 +227,31 @@ Deno の特徴3
 
 # セキュリティ強化
 
-- サプライチェーン攻撃に強い (ネットワークアクセス時、ファイルアクセス時に権限チェックがある)
+- ネットワークアクセス時、ファイルアクセス時に権限チェックがある
+  - サプライチェーン攻撃に強い
 
+<p class="text-center">
+  <img src="assets/perm.png" width="700" >
+</p>
 
 ---
 class: middle center
 
 <img src="assets/deno_logo_3.svg" width="200" />
 
-復習ここまで
+おさらいここまで
 
 ---
-class: bg-light-yellow
+参考文献
 
-<img src="./assets/hinosawa.jpg" align="right" width="150" />
-
-自己紹介
-
-日野澤歓也 / twitter @kt3k
-
-Web エンジニア歴 13年
-
-- <small>プロジェクト初期 (2018) からOSSとしての Deno 開発に参加</small>
-- <small>2020年に Deno が会社化、その数カ月後に会社に誘われる</small>
-- <small>2021年から Deno のフルタイムコミッターに</small>
-
-<small>このあたりの経緯は Findy Engineer Lab の[Deno開発企業で私が働く理由](https://engineer-lab.findy-code.io/deno-kt3k)という記事にまとめられています</small>
+- Deno ってなんだっけ? - Qiita
+  - <small>https://qiita.com/kt3k/items/e1647683ad08ff6b6e95</small>
+- Denoとはなにか - 実際につかってみる - Qiita
+  - <small>https://qiita.com/azukiazusa/items/8238c0c68ed525377883</small>
+- Deno入門 - エンジニアハブ
+  - <small>https://eh-career.com/engineerhub/entry/2022/06/17/093000</small>
+- 公式マニュアル (英語)
+  - <small>https://deno.land/manual</small>
 
 ---
 class: middle center bg-sky
@@ -287,7 +303,7 @@ app.listen(3000);
 ---
 npm 互換性 概要
 
-- `npm:` の後ろに npm モジュール名を指定した文字列から import する
+- `npm:` の後ろに npm モジュール名を指定した文字列から import できる
   - 例. `import chalk from "npm:chalk"`
 - Deno が自動的にその npm モジュールをダウンロード & インポートしてくれる
 - すべての npm モジュールがサポート対象
@@ -295,6 +311,16 @@ npm 互換性 概要
 --
 
 <p class="text-center">デモ</p>
+
+---
+デモで伝えたかったこと
+
+- import の記法が少し変る以外は<span class="red">完全に同じコード</span>
+  - つまり drop-in replacement であること
+
+--
+- npm モジュールを Deno のセキュリティの仕組みの中で動かせている事
+  - Node.js より<span class="red">安全に</span> npm モジュールを実行できている事
 
 ---
 npm 互換性 補足
@@ -319,12 +345,7 @@ import chalk from "chalk"; // <= npm:chalk にマップされる
 ```
 
 ---
-class: middle center inverse
-
-動作確認状況
-
----
-npm 互換性
+npm 互換性の動作確認状況
 
 - 動く
   - chalk, express, vite, react, prisma, etc...
@@ -362,10 +383,9 @@ npm 互換性 実装までの経緯
 class: code-18
 # タイムライン1 - 2018
 
-- npm/Node に対応しない方針で開発開始
-  - 実際 npm/Node とは全く違う URLベースの module system が実装された
+- 明確に npm/Node 互換性を否定する方針で開発スタート
+  - 実際 Node とは全く違う URLベースの module system が実装された
 
-<br />
 ```js
 import { serve } from "https://deno.land/std@0.160.0/http/server.ts";
 import html, { h } from "https://deno.land/x/htm/mod.ts";
@@ -386,7 +406,7 @@ class: no-number
 
 # タイムライン3 - 2019/11
 
-- 標準モジュールの `node/` ディレクトリ以下で Node 互換性の実装が始まる
+- 標準モジュールの `node/` ディレクトリ以下で Node と互換性のある API の実装が始まる
   - その後各 Node.js API が粛々と実装され続ける
 
 <p class="text-center">
@@ -440,6 +460,12 @@ class: middle center inverse
 <span style="text-decoration-line: underline; text-decoration-style: dotted;">⚠ npm 互換機能はリリースされたばかり</span>
 </p>
 
+--
+<p class="text-center">
+<span style="">💡 公式アナウンスからリリースまでは短かったものの仕込み自体は3年ぐらい前から</span>
+</p>
+
+
 ---
 class: middle center inverse
 
@@ -476,7 +502,7 @@ npm 互換性 推進派
 npm 互換性の葛藤
 
 - コミュニティ内はどちらかというと反対優勢
-- npm 互換性はコミュニティ外に向けてアピールするための機能
+- npm 互換性は Deno を使っていない人に向けてアピールするための機能
 - この機能を本当に入れるべきなのかという混乱があった
 
 ---
@@ -553,6 +579,9 @@ npm 互換性で変わらない事1
   - `new URL("npm:express")` でパース出来る
   - protocol `npm:` path `express` の URL
 
+--
+- Deno の npm 互換性 = 特殊な URL の特殊な解釈
+
 ---
 npm 互換性で変わらない事2
 
@@ -615,6 +644,8 @@ class: middle center
 <img src="assets/deno_logo_3.svg" width="200" />
 
 Thank you!
+
+https://kt3k.github.io/talk_jsconfjp_2022/
 </textarea>
     <div style="z-index: -1; position: fixed; display: flex; align-items: center; gap: 4px;">
       <svg style="animation: spin 1s linear infinite; width: 18px; height: 18px;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
